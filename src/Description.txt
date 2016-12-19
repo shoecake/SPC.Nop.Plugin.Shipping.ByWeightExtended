@@ -1,0 +1,9 @@
+﻿Group: Shipping rate computation
+FriendlyName: Shipping by weight Extended
+SystemName: SPC.Shipping.ByWeightExtended
+Version: 1.45
+SupportedVersions: 3.80
+Author: nopCommerce team/SPC Internet Ltd
+DisplayOrder: 1
+FileName: SPC.Nop.Plugin.Shipping.ByWeightExtended.dll
+Description: This plugin enables shipping rates to be calculated by weight. Extended to allow free shipping in primary country only

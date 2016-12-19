@@ -1,0 +1,56 @@
+﻿
+@model ProductShippingByProductModel
+@using Nop.Plugin.Shipping.ByWeightExtended.Models;
+@using Nop.Web.Framework;
+@using Nop.Core.Infrastructure;
+@{
+    Layout = "";
+
+    var defaultGridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
+    var gridPageSizes = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
+
+
+}
+
+<script type="text/javascript" src="@Url.Content("~/plugins/SPC.Shipping.ShippingByWeightExtended/Scripts/ProductAdmin.js?v=123455")"></script>
+
+
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "shipping-byweightextended-form" })) { @Html.AntiForgeryToken()   <div class="content-header clearfix">
+        <div class="pull-left">
+            @*<a href="@Url.Action("Save", "ProductAdmin", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Shipping.ByWeightExtended.Controllers" }, { "area", "" } })" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                Save Changes
+            </a>*@
+
+            <button type="button" class="btn bg-blue" title="Save Shipping Options" onclick="SPCShippingOptions.SaveProduct()">
+                <i class="fa fa-floppy-o"></i>
+                Save Shipping Options
+            </button>
+        </div>
+    </div>
+
+	<h3>Which shipping options have free shipping</h3>
+    @Html.HiddenFor(m => Model.productId)
+    
+    <table style="padding-top: 20px;">
+        @for (int i = 0; i < Model.shippingMethods.Count(); i++)
+        {
+            <tr>
+                <td style="padding-right: 10px;">
+                    @Model.shippingMethods[i].shippingMethodName
+                    @Html.HiddenFor(m => Model.shippingMethods[i].shippingMethodName)
+                </td>
+                <td>
+                    @*@Html.NopLabelFor(m => Model.shippingMethods[i].freeShipping)*@
+                    @Html.NopEditorFor(m => Model.shippingMethods[i].freeShipping)
+                    @Html.HiddenFor(m => Model.shippingMethods[i].shippingMethodId)
+                    @*@Html.ValidationMessageFor(m => Model.shippingMethods[i].freeShipping)*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+        }
+
